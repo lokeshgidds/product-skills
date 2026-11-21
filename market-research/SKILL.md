@@ -7,9 +7,6 @@ description: Conduct structured market research and competitive analysis for pro
 
 ## Overview
 
-This skill conducts structured, web-powered market research to produce actionable intelligence for product and business decisions. It goes beyond surface-level summaries by triangulating multiple sources, quantifying market dynamics, and surfacing non-obvious insights.
-
-The skill is designed for product leaders and founders who need to make decisions fast — not academic researchers who need exhaustive literature reviews.
 
 ## Core Principles
 
