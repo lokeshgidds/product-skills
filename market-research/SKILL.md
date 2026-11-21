@@ -14,7 +14,6 @@ description: Conduct structured market research and competitive analysis for pro
 2. **So-what framing**: Every finding should connect to a decision or action. Don't just report that "the market is growing" — say what that means for the user's specific situation.
 3. **Honest uncertainty**: Clearly distinguish between verified facts, reasonable estimates, and speculation. Use confidence levels (High / Medium / Low) for key claims.
 4. **Bootstrapper-friendly**: Default to scrappy, actionable insights rather than consulting-firm-style frameworks that require massive budgets to act on.
-5. **Recency matters**: Always prefer recent data. Flag when data is older than 12 months. Use web search aggressively to find the latest numbers.
 
 ## Research Modes
 
