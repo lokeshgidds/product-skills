@@ -23,11 +23,17 @@ The skill supports several research modes depending on what the user needs. Iden
 
 **When to use**: User wants to understand how big an opportunity is. Phrases like "how big is the market for X", "what's the TAM", "is this market worth entering".
 
+**Before you start — pin down the buyer**: If the request names a broad category (e.g., "B2B SaaS in proptech") without a specific buyer, ask ONE clarifying question: "Who exactly pays — which customer type, and for what product?" If the user doesn't want to narrow it, proceed by sizing each plausible buyer segment separately rather than producing one blended number.
+
 **Workflow**:
-1. **Define the market boundaries** — What exactly are we measuring? Clarify geography, customer segment, product category.
-2. **Top-down sizing** — Search for industry reports, analyst estimates, and public company data to establish TAM.
-3. **Bottom-up validation** — Estimate from unit economics: (number of potential customers) × (average revenue per customer) × (purchase frequency).
-4. **SAM narrowing** — Apply realistic filters: geography, segment, channel, price point.
+1. **Define the market boundaries** — What exactly are we measuring? Clarify geography, customer segment, product category. State explicitly what's excluded (e.g., marketplaces, services, hardware).
+2. **Bottom-up sizing (primary)** — Build the number from the ground up, per buyer segment: (number of paying buyers) × (annual revenue per buyer). Anchor buyer counts to registries, regulators, or association data, and anchor price points to real competitor pricing or disclosed revenue ÷ customers. Present it as a segment table:
+
+   | Segment | # Paying buyers | ARPA / yr | Segment size | Confidence |
+   |---------|-----------------|-----------|--------------|------------|
+
+3. **Top-down cross-check (secondary)** — Use industry reports and analyst estimates only as a sanity check on the bottom-up figure. Analyst reports often disagree by 50%+ and bundle adjacent categories; note the spread and scope differences rather than picking one number.
+4. **SAM narrowing** — Apply realistic filters: geography, segment, channel, price point. Express SAM as a share of the top-down TAM and explain whether that ratio is plausible.
 5. **SOM estimation** — Based on competitive dynamics, distribution advantages, and realistic capture rate for a bootstrapped/early-stage company.
 6. **Growth trajectory** — CAGR, key growth drivers, potential headwinds.
 
@@ -39,15 +45,21 @@ The skill supports several research modes depending on what the user needs. Iden
 - **Market**: [precise definition of what's being measured]
 - **Geography**: [target geography]
 - **Time horizon**: [year of estimates]
+- **FX rate used**: [e.g., ₹88 / USD, as of date]
 
 ### TAM (Total Addressable Market)
-- **Estimate**: [₹/$ figure]
+- **Estimate**: [₹ figure (≈ $ figure)]
 - **Source(s)**: [citations]
 - **Methodology**: [top-down / bottom-up / both]
 - **Confidence**: [High / Medium / Low]
 
 ### SAM (Serviceable Addressable Market)
-- **Estimate**: [₹/$ figure]
+| Segment | # Paying buyers | ARPA / yr | Segment size | Confidence |
+|---------|-----------------|-----------|--------------|------------|
+| ...     | ...             | ...       | ...          | ...        |
+| **Total** | | | **[₹ range; central case] (≈ $)** | ... |
+
+- **How inputs were derived**: [source for each buyer count and price point]
 - **Key filters applied**: [list]
 - **Confidence**: [High / Medium / Low]
 
@@ -151,6 +163,38 @@ The skill supports several research modes depending on what the user needs. Iden
 4. **Assess price sensitivity** — Based on segment, alternatives, and switching costs.
 5. **Recommend pricing architecture** — Model, tiers, anchor pricing, and positioning.
 
+**Output format**:
+```
+## Pricing Research: [Product/Market]
+
+### Competitor Pricing Map
+| Company | Model | Entry Price | Mid Tier | Top Tier | Value Metric | Free Tier/Trial | Source & Date |
+|---------|-------|-------------|----------|----------|--------------|-----------------|---------------|
+| ...     | Subscription / Usage / Freemium / One-time | ... | ... | ... | per user / per project / ... | ... | ... |
+
+### Pricing Patterns
+- **Dominant model**: [what most competitors do]
+- **Common value metric**: [what unit customers pay for]
+- **Price range**: [low – high, with median]
+- **Hidden costs**: [add-ons, setup fees, minimum seats, integrations]
+
+### Price Sensitivity
+- **Segment WTP**: [by segment, with evidence]
+- **Switching costs**: [High / Medium / Low + why]
+- **Cheapest credible alternative**: [incl. spreadsheets / WhatsApp / doing nothing]
+
+### Recommended Pricing Architecture
+| Tier | Price | Target Customer | Key Inclusions | Purpose (anchor / volume / upsell) |
+|------|-------|-----------------|----------------|------------------------------------|
+| ...  | ...   | ...             | ...            | ...                                |
+
+- **Value metric**: [recommended unit + rationale]
+- **Confidence**: [High / Medium / Low]
+
+### So What
+[2-3 sentences on how to launch pricing and what to test first]
+```
+
 ---
 
 ### Mode 5: Opportunity Assessment
@@ -229,6 +273,11 @@ Before delivering any research output, verify:
 - Use ranges rather than point estimates when data is sparse: "₹500Cr - ₹800Cr based on [methodology]"
 - Flag emerging markets where historical data may not predict the future.
 
+### Currency
+- For non-USD markets, report figures in local currency first with the USD equivalent alongside, e.g., "₹1,100 Cr (≈ $125M)".
+- State the exchange rate and its date once, at the top of the output (e.g., "FX: ₹88 / USD, Nov 2026").
+- When converting a source's figure, keep the original currency in the citation so the user can verify it.
+
 ## Adapting to Context
 
 ### For Bootstrapped Founders
@@ -252,7 +301,10 @@ Before delivering any research output, verify:
 ## Output Delivery
 
 ### Default: Markdown Document
-For most research requests, produce a structured markdown document following the relevant mode's output format. This should be saved as a `.md` file the user can reference later.
+For most research requests, produce a structured markdown document following the relevant mode's output format. Save it as a `.md` file the user can reference later:
+- **Location**: `research/` in the user's current project directory (create it if missing), unless the user names another location. Never default to a temp or scratch directory — those can be wiped.
+- **Filename**: `YYYY-MM-DD-<topic-slug>.md` (e.g., `2026-11-22-india-proptech-saas-sam.md`).
+- Tell the user the full path of the saved file.
 
 ### For Quick Questions
 If the user asks a narrow, specific question (e.g., "what's the CAGR for edtech in India?"), answer directly with sources — don't produce a full report.
@@ -262,6 +314,6 @@ If the research requires more than one mode, produce a single comprehensive docu
 
 ## References
 
-See `references/research-prompts.md` for a library of effective search query patterns for different research scenarios.
+See `research-prompts.md` for a library of effective search query patterns for different research scenarios.
 
-See `references/data-sources.md` for a curated list of reliable data sources by industry and geography.
+See `data-sources.md` for a curated list of reliable data sources by industry and geography.
